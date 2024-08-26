@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: events
+  name: github-events
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/alejo-maya/argo-apps.git
     targetRevision: HEAD
-    path: events
+    path: events/github-events
   destination: 
     server: https://kubernetes.default.svc
     namespace: argo-events
