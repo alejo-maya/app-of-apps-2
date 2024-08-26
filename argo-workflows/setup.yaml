@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/alejo-maya/argo-apps.git
     targetRevision: HEAD
-    path: argo-workflows/setup
+    path: argo/setup
   destination: 
     server: https://kubernetes.default.svc
-    namespace: argo-workflows
+    namespace: argo
 
   syncPolicy:
     syncOptions:
