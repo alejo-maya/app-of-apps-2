@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-apps
+spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
+  source:
+    path: argo-apps
+    repoURL: 'https://github.com/alejo-maya/app-of-apps-2'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
