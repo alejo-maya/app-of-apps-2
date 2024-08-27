@@ -10,9 +10,12 @@ spec:
     name: in-cluster
     namespace: argocd
   source:
-    path: latest-2/kustomize
+    path: latest-2/charts/app-definitions
     repoURL: 'https://github.com/alejo-maya/app-of-apps-2'
     targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ../../values.yaml
   project: default
   syncPolicy:
     automated:
