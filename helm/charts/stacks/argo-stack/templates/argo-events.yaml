@@ -10,9 +10,6 @@ spec:
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
     path: helm/charts/apps/argo-stack/argo-events
-    # helm:
-    #   valueFiles:
-    #     - ../../../../values.yaml
   destination: 
     server: {{ .Values.global.spec.destination.server }}
     namespace: {{ .Values.global.namespaces.argoevents }}

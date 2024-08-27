@@ -1,21 +1,21 @@
 apiVersion: {{ .Values.global.apiVersion }}
 kind: {{ .Values.global.kind }}
 metadata:
-  name: argo-workflows
+  name: argo
   namespace: {{ .Values.global.namespaces.argocd }}
   finalizers: {{ .Values.global.metadata.finalizers }}
 spec:
   project: {{ .Values.global.spec.project }}
   source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argo-workflows
-    targetRevision: 0.42.0
+    repoURL: {{ .Values.global.spec.source.repoURL }}
+    targetRevision: {{ .Values.global.spec.source.targetRevision }}
+    chart: helm/charts/apps/argo-stack/argo-workflows
   destination: 
     server: {{ .Values.global.spec.destination.server }}
     namespace: {{ .Values.global.namespaces.argo }}
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
+    - CreateNamespace=false
     automated:
       prune: {{ .Values.global.syncPolicy.automated.prune }}
       selfHeal: {{ .Values.global.syncPolicy.automated.selfHeal }}
