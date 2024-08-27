@@ -1,38 +1,41 @@
-# apiVersion: {{ .Values.global.apiVersion }}
-# kind: {{ .Values.global.kind }}
-# metadata:
-#   name: argo-stack
-#   finalizers: {{ .Values.global.metadata.finalizers }}
-# spec:
-#   destination:
-#     name: {{ .Values.global.spec.destination.name }}
-#     namespace: {{ .Values.global.namespaces.argocd }}
-#   source:
-#     path: helm/templates/stacks/argo-stack
-#     repoURL: {{ .Values.global.spec.source.repoURL }}
-#     targetRevision: {{ .Values.global.spec.source.targetRevision }}
-#   project: {{ .Values.global.spec.project }}
-#   syncPolicy:
-#     automated:
-#       prune: {{ .Values.global.spec.syncPolicy.automated.prune }}
-#       selfHeal: {{ .Values.global.spec.syncPolicy.automated.selfHeal }}
-
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: {{ .Values.global.apiVersion }}
+kind: {{ .Values.global.kind }}
 metadata:
   name: argo-stack
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  finalizers: {{ .Values.global.metadata.finalizers }}
 spec:
   destination:
-    name: in-cluster
-    namespace: argocd
+    name: {{ .Values.global.spec.destination.name }}
+    namespace: {{ .Values.global.namespaces.argocd }}
   source:
-    path: helm/templates/stacks/argo-stack
-    repoURL: https://github.com/alejo-maya/app-of-apps-2
-    targetRevision: HEAD
-  project: default
+    path: helm/charts/stacks/templates/argo-stack
+    repoURL: {{ .Values.global.spec.source.repoURL }}
+    targetRevision: {{ .Values.global.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+        - ../../../values.yaml
+  project: {{ .Values.global.spec.project }}
   syncPolicy:
     automated:
-      selfHeal: true
-      prune: true
+      prune: {{ .Values.global.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.global.syncPolicy.automated.selfHeal }}
+
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: argo-stack
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     name: in-cluster
+#     namespace: argocd
+#   source:
+#     path: helm/templates/stacks/argo-stack
+#     repoURL: https://github.com/alejo-maya/app-of-apps-2
+#     targetRevision: HEAD
+#   project: default
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true

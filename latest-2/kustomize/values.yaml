@@ -28,7 +28,7 @@ global:
     kinds:
       eventsource: EventSource
       sensor: Sensor
-    githubES:
+    githubes:
       eventsource:
         name: github
         service:

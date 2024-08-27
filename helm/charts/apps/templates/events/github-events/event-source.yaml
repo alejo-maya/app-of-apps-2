@@ -1,16 +1,16 @@
-apiVersion: {{ .Values.apiVersion }}
-kind: {{ .Values.events.kindseventsource }}
+apiVersion: {{ .Values.global.apiVersion }}
+kind: {{ .Values.global.events.kinds.eventsource }}
 metadata:
-  name: {{ .Values.events.githubeseventsource.name }}
-  namespace: {{ .Values.namespacesargoevents }}
+  name: {{ .Values.global.events.githubES.eventsource.name }}
+  namespace: {{ .Values.global.namespaces.argoevents }}
 spec:
   service:
     ports:
-      - name: {{ .Values.events.githubeseventsource.service.name }}
+      - name: {{ .Values.global.events.githubES.eventsource.service.name }}
         port: 12000
         targetPort: 12000
   github:
-    {{ .Values.events.githubeseventsource.service.name }}:
+    {{ .Values.global.events.githubES.eventsource.service.name }}:
       repositories:
         - owner: alejo-maya
           names:
