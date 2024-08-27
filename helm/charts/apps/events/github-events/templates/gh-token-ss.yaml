@@ -2,7 +2,7 @@ apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
   creationTimestamp: null
-  name: {{ .Values.global.events.githubes.apiToken.name }}
+  name: {{ .Values.global.events.githubES.apiToken.name }}
   namespace: {{ .Values.global.namespaces.argoevents }}
 spec:
   encryptedData:
