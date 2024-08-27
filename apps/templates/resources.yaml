@@ -2,6 +2,7 @@ apiVersion: {{ .Values.apiVersion }}
 kind: {{ .Values.kind }}
 metadata:
   name: resources
+  finalizers: {{ .Values.metadata.finalizers }}
 spec:
   destination:
     name: {{ .Values.spec.destination.name }}

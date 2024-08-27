@@ -2,12 +2,13 @@ apiVersion: {{ .Values.apiVersion }}
 kind: {{ .Values.kind }}
 metadata:
   name: argo-stack
+  finalizers: {{ .Values.metadata.finalizers }}
 spec:
   destination:
     name: {{ .Values.spec.destination.name }}
     namespace: {{ .Values.spec.destination.namespace }}
   source:
-    path: argo-stack
+    path: stacks/templates/argo-stack
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
   project: {{ .Values.spec.project }}
