@@ -1,0 +1,22 @@
+apiVersion: {{ .Values.global.apiVersion }}
+kind: {{ .Values.global.kind }}
+metadata:
+  name: argo-events
+  namespace: {{ .Values.global.namespaces.argocd }}
+  finalizers: {{ .Values.global.metadata.finalizers }}
+spec:
+  project: {{ .Values.global.spec.project }}
+  source:
+    repoURL: {{ .Values.global.spec.source.repoURL }}
+    targetRevision: {{ .Values.global.spec.source.targetRevision }}
+    path: helm/templates/apps/argo-stack/argo-events
+  destination: 
+    server: {{ .Values.global.spec.destination.server }}
+    namespace: {{ .Values.global.namespaces.argoevents }}
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=false
+    automated:
+      prune: {{ .Values.global.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.global.syncPolicy.automated.selfHeal }}

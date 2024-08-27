@@ -11,9 +11,9 @@ spec:
     path: helm/charts/stacks/templates/argo-stack
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
-    # helm:
-    #   valueFiles:
-    #     - ../../../values.yaml
+    helm:
+      valueFiles:
+        - ../../../values.yaml
   project: {{ .Values.global.spec.project }}
   syncPolicy:
     automated:
