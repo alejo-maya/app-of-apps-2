@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/alejo-maya/app-of-apps-2
+    repoURL: https://github.com/alejo-maya/argo-apps
     targetRevision: HEAD
   destination: 
     name: in-cluster
