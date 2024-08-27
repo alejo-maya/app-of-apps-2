@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: github-eventsource-ingress
-  namespace: {{ .Values.namespaces.argo-events }}
+  namespace: {{ .Values.namespacesargoevents }}
 spec:
   ingressClassName: nginx
   rules:

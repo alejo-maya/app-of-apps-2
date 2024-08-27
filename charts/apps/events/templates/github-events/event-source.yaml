@@ -1,0 +1,30 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: {{ .Values.events.kinds.event-source }}
+metadata:
+  name: {{ .Values.events.github-es.event-source.name }}
+  namespace: {{ .Values.namespaces.argo-events }}
+spec:
+  service:
+    ports:
+      - name: {{ .Values.events.github-es.event-source.service.name }}
+        port: 12000
+        targetPort: 12000
+  github:
+    {{ .Values.events.github-es.event-source.service.name }}:
+      repositories:
+        - owner: alejo-maya
+          names:
+            - hello-world-node
+      webhook:
+        endpoint: /push
+        port: "12000"
+        method: POST
+        url: http://135.237.10.13.nip.io
+      events:
+        - "push"
+      apiToken:
+        name: github-access
+        key: token
+      insecure: false
+      active: true
+      contentType: json

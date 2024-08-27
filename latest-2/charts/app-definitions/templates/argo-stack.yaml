@@ -1,0 +1,18 @@
+apiVersion: {{ .Values.global.apiVersion }}
+kind: {{ .Values.global.kind }}
+metadata:
+  name: argo-stack
+  finalizers: {{ .Values.global.metadata.finalizers }}
+spec:
+  destination:
+    name: {{ .Values.global.spec.destination.name }}
+    namespace: {{ .Values.global.namespaces.argocd }}
+  source:
+    path: helm/templates/stacks/argo-stack
+    repoURL: {{ .Values.global.spec.source.repoURL }}
+    targetRevision: {{ .Values.global.spec.source.targetRevision }}
+  project: {{ .Values.global.spec.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.global.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.global.syncPolicy.automated.selfHeal }}

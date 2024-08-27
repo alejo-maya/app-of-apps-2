@@ -12,7 +12,7 @@ spec:
     path: helm/templates/apps/argo-stack/argo-events
   destination: 
     server: {{ .Values.spec.destination.server }}
-    namespace: {{ .Values.namespaces.argo-events }}
+    namespace: {{ .Values.namespacesargoevents }}
 
   syncPolicy:
     syncOptions:

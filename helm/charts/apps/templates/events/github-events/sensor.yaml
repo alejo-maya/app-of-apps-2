@@ -2,14 +2,14 @@ apiVersion: {{ .Values.apiVersion }}
 kind: {{ .Values.events.kinds.sensor }}
 metadata:
   name: github-sensor
-  namespace: {{ .Values.namespaces.argo-events }}
+  namespace: {{ .Values.namespacesargoevents }}
 spec:
   template:
-    serviceAccountName: {{ .Values.events.github-es.serviceAccount.name }}
+    serviceAccountName: {{ .Values.events.githubes.serviceAccount.name }}
   dependencies:
     - name: github-event
-      eventSourceName: {{ .Values.events.github-es.event-source.name }}
-      eventName: {{ .Values.events.github-es.event-source.service.name }}
+      eventSourceName: {{ .Values.events.githubeseventsource.name }}
+      eventName: {{ .Values.events.githubeseventsource.service.name }}
   triggers:
     - template:
         name: trigger-workflow

@@ -1,0 +1,47 @@
+global:
+  apiVersion: argoproj.io/v1alpha1
+  kind: Application
+  metadata:
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  spec:
+    project: default
+    source:
+      repoURL: https://github.com/alejo-maya/app-of-apps-2
+      targetRevision: HEAD
+    destination: 
+      name: in-cluster
+      server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+
+  namespaces:
+    argocd: argocd
+    argo-events: argo-events
+    argo: argo
+    workflows: workflows
+
+
+  events:
+    kinds:
+      event-source: EventSource
+      sensor: Sensor
+    github-es:
+      event-source:
+        name: github
+        service:
+          name: github-es-svc
+      apiToken:
+        name: github-access
+        key: token
+      serviceAccount:
+        name: github-sensor-sa
+
+  workflows:
+    templates:
+      silly:
+        name: silly-template
+    serviceAccount:
+      name: sa-workflow
