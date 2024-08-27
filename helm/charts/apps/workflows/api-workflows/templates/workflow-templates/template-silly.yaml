@@ -50,4 +50,4 @@ spec:
         image: alpine
         command: [echo]
         args:
-        - {{ .Values.global.workflows.templates.silly.templates.echo.args.input }}
+        - "{{\"{{inputs.parameters.message}}\"}}"
