@@ -8,15 +8,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/alejo-maya/argo-apps.git
-    targetRevision: HEAD
-    path: argo-apps/argo-workflows
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-workflows
+    targetRevision: 0.42.0
   destination: 
     server: https://kubernetes.default.svc
     namespace: argo
   syncPolicy:
     syncOptions:
-    - CreateNamespace=false
+    - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true

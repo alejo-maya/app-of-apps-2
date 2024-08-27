@@ -1,13 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-metadata:
-  name: events
 spec:
   destination:
     name: in-cluster
     namespace: argocd
   source:
-    path: events
     repoURL: 'https://github.com/alejo-maya/app-of-apps-2'
     targetRevision: HEAD
   project: default

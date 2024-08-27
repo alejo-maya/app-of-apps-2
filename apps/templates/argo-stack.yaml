@@ -1,0 +1,17 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: {{ .Values.kind }}
+metadata:
+  name: argo-stack
+spec:
+  destination:
+    name: {{ .Values.spec.destination.name }}
+    namespace: {{ .Values.spec.destination.namespace }}
+  source:
+    path: argo-stack
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  project: {{ .Values.spec.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.spec.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.spec.syncPolicy.automated.selfHeal }}
