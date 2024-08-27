@@ -1,0 +1,18 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: {{ .Values.kind }}
+metadata:
+  name: events
+  finalizers: {{ .Values.metadata.finalizers }}
+spec:
+  destination:
+    name: {{ .Values.spec.destination.name }}
+    namespace: {{ .Values.namespaces.argocd }}
+  source:
+    path: helm/templates/stacks/events #events
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  project: {{ .Values.spec.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.spec.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.spec.syncPolicy.automated.selfHeal }}

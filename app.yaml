@@ -10,7 +10,7 @@ spec:
     name: in-cluster
     namespace: argocd
   source:
-    path: apps
+    path: helm/templates/apps
     repoURL: 'https://github.com/alejo-maya/app-of-apps-2'
     targetRevision: HEAD
   project: default

@@ -1,0 +1,21 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: {{ .Values.kind }}
+metadata:
+  name: api-workflows
+  namespace: {{ .Values.namespaces.argocd }}
+  finalizers: {{ .Values.metadata.finalizers }}
+spec:
+  project: {{ .Values.spec.project }}
+  source:
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    path: workflows
+  destination: 
+    server: {{ .Values.spec.destination.server }}
+    namespace: workflows
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=false
+    automated:
+      prune: {{ .Values.spec.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.spec.syncPolicy.automated.selfHeal }}
