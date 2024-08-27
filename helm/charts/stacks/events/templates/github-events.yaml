@@ -1,7 +1,7 @@
 apiVersion: {{ .Values.global.apiVersion }}
 kind: {{ .Values.global.kind }}
 metadata:
-  name: argo-events
+  name: github-events
   namespace: {{ .Values.global.namespaces.argocd }}
   finalizers: {{ .Values.global.metadata.finalizers }}
 spec:
@@ -9,14 +9,13 @@ spec:
   source:
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
-    path: helm/charts/apps/argo-stack/argo-events
+    path: helm/charts/apps/events/github-events
     helm:
       valueFiles:
         - ../../../../values.yaml
   destination: 
     server: {{ .Values.global.spec.destination.server }}
     namespace: {{ .Values.global.namespaces.argoevents }}
-
   syncPolicy:
     syncOptions:
     - CreateNamespace=false

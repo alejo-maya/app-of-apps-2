@@ -1,0 +1,29 @@
+apiVersion: {{ .Values.global.apiVersion }}
+kind: {{ .Values.global.events.kinds.sensor }}
+metadata:
+  name: github-sensor
+  namespace: {{ .Values.global.namespaces.argoevents }}
+spec:
+  template:
+    serviceAccountName: {{ .Values.global.events.githubES.serviceAccount.name }}
+  dependencies:
+    - name: github-event
+      eventSourceName: {{ .Values.global.events.githubES.eventsource.name }}
+      eventName: {{ .Values.global.events.githubES.eventsource.service.name }}
+  triggers:
+    - template:
+        name: trigger-workflow
+        argoWorkflow:
+          group: argoproj.io
+          version: v1alpha1
+          operation: submit
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: github-workflow-
+                namespace: {{ .Values.global.namespaces.workflows }}
+              spec:
+                workflowTemplateRef:
+                  name: {{ .Values.global.workflows.templates.silly.name }}

@@ -8,7 +8,7 @@ spec:
     name: {{ .Values.global.spec.destination.name }}
     namespace: {{ .Values.global.namespaces.argocd }}
   source:
-    path: helm/charts/stacks/templates/events #events
+    path: helm/charts/stacks/events #events
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
     helm:
