@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
-    chart: helm/charts/apps/argo-stack/argo-workflows
+    path: helm/charts/apps/argo-stack/argo-workflows
   destination: 
     server: {{ .Values.global.spec.destination.server }}
     namespace: {{ .Values.global.namespaces.argo }}
