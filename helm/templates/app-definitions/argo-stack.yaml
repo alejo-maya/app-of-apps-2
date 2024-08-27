@@ -17,8 +17,8 @@
 #       prune: {{ .Values.spec.syncPolicy.automated.prune }}
 #       selfHeal: {{ .Values.spec.syncPolicy.automated.selfHeal }}
 
-apiVersion: {{ .Values.apiVersion }}
-kind: {{ .Values.kind }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: argo-stack
   finalizers:
