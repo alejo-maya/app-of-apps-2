@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-workflows
+  name: app-of-apps
 spec:
   destination:
     name: in-cluster
     namespace: argocd
   source:
-    path: workflows
+    path: apps
     repoURL: 'https://github.com/alejo-maya/app-of-apps-2'
     targetRevision: HEAD
   project: default
