@@ -51,4 +51,3 @@ spec:
         command: [echo]
         args:
         - "prueba"
-        #- "{{\"{{inputs.parameters.message}}\"}}"
