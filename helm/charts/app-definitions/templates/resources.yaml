@@ -1,0 +1,38 @@
+apiVersion: {{ .Values.global.apiVersion }}
+kind: {{ .Values.global.kind }}
+metadata:
+  name: resources
+  finalizers: {{ .Values.global.metadata.finalizers }}
+spec:
+  destination:
+    name: {{ .Values.global.spec.destination.name }}
+    namespace: {{ .Values.global.namespaces.argocd }}
+  source:
+    path: helm/templates/stacks/resources
+    repoURL: {{ .Values.global.spec.source.repoURL }}
+    targetRevision: {{ .Values.global.spec.source.targetRevision }}
+  project: {{ .Values.global.spec.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.global.spec.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.global.spec.syncPolicy.automated.selfHeal }}
+
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: resources
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     name: in-cluster
+#     namespace: argocd
+#   source:
+#     path: helm/templates/stacks/resources
+#     repoURL: https://github.com/alejo-maya/app-of-apps-2
+#     targetRevision: HEAD
+#   project: default
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
