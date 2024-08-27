@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
-    path: helm/charts/apps/workflows
+    path: helm/charts/apps/workflows/api-workflows
     helm:
       valueFiles:
         - ../../../../values.yaml
