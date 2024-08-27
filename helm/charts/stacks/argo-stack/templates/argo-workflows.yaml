@@ -1,7 +1,7 @@
 apiVersion: {{ .Values.global.apiVersion }}
 kind: {{ .Values.global.kind }}
 metadata:
-  name: "argo-"{{ .Values.global.namespaces.workflows }}
+  name: argo-workflows
   namespace: {{ .Values.global.namespaces.argocd }}
   finalizers: {{ .Values.global.metadata.finalizers }}
 spec:
