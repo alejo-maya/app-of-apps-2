@@ -1,0 +1,21 @@
+apiVersion: {{ .Values.global.apiVersion }}
+kind: {{ .Values.global.kind }}
+metadata:
+  name: node-app-test
+  finalizers: {{ .Values.global.metadata.finalizers }}
+spec:
+  destination:
+    name: {{ .Values.global.spec.destination.name }}
+    namespace: {{ .Values.global.namespaces.argocd }}
+  source:
+    path: helm/charts/apps/node-app-test #events
+    repoURL: {{ .Values.global.spec.source.repoURL }}
+    targetRevision: {{ .Values.global.spec.source.targetRevision }}
+    helm:
+      valueFiles:
+        - ../../../values.yaml
+  project: {{ .Values.global.spec.project }}
+  syncPolicy:
+    automated:
+      prune: {{ .Values.global.syncPolicy.automated.prune }}
+      selfHeal: {{ .Values.global.syncPolicy.automated.selfHeal }}
