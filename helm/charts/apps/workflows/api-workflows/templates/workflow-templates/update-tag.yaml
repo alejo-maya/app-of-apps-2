@@ -11,8 +11,8 @@ spec:
       - name: container_image
     script:
       image: alpine:3.12
-      command: [sh, -c]
-      args: ["echo hola e", "echo adios"]
+      command: [sh]
+      args: ["-c", "echo hola e", "echo adios"]
     #   - "echo chau"
     #   - "set -e"
     #   - "latest_tag=$(curl -s https://registry.hub.docker.com/v1/repositories/{{`{{`}}inputs.parameters.container_image{{`}}`}}/tags | jq -r '.[].name' | sort -V | tail -n 1)"
