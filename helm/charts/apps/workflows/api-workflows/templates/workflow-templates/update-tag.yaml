@@ -12,10 +12,7 @@ spec:
     script:
       image: alpine:3.12
       command: [sh, -c]
-      args:
-      - "| 
-      echo hola chau |
-      echo hola adios"
+      args: ["echo hola e", "echo adios"]
     #   - "echo chau"
     #   - "set -e"
     #   - "latest_tag=$(curl -s https://registry.hub.docker.com/v1/repositories/{{`{{`}}inputs.parameters.container_image{{`}}`}}/tags | jq -r '.[].name' | sort -V | tail -n 1)"
