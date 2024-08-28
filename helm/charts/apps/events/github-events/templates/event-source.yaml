@@ -6,11 +6,11 @@ metadata:
 spec:
   service:
     ports:
-      - name: {{ .Values.global.events.githubES.eventsource.service.name }}
+      - name: event-test
         port: 12000
         targetPort: 12000
   github:
-    {{ .Values.global.events.githubES.eventsource.service.name }}:
+    event-test:
       repositories:
         - owner: alejo-maya
           names:
@@ -25,6 +25,6 @@ spec:
       apiToken:
         name: github-access
         key: token
-      insecure: false
+      insecure: true
       active: true
       contentType: json

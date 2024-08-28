@@ -9,7 +9,7 @@ spec:
   dependencies:
     - name: github-event
       eventSourceName: {{ .Values.global.events.githubES.eventsource.name }}
-      eventName: {{ .Values.global.events.githubES.eventsource.service.name }}
+      eventName: event-test
   triggers:
     - template:
         name: trigger-workflow
