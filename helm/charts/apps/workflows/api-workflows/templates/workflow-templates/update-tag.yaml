@@ -11,7 +11,7 @@ spec:
       - name: container_image
     script:
       image: alpine
-      command: [echo]
+      command: [sh]
       args:
-      - "hola"
+      - "echo hola"
     #   source: echo hola
