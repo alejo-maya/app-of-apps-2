@@ -8,7 +8,7 @@ spec:
     name: {{ .Values.global.spec.destination.name }}
     namespace: {{ .Values.global.namespaces.argocd }}
   source:
-    path: helm/charts/apps/node-app-test/charts/ingress-test #events
+    path: helm/charts/apps/ingress-test #events
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
   project: {{ .Values.global.spec.project }}
