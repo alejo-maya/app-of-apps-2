@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: alejomayasw/hello-world-node-test
-        tag: 0.0.4
+        image: alejomayasw/hello-world-node-test:{{ .Values.tag }}
         ports:
         - containerPort: 8083
