@@ -19,7 +19,7 @@ spec:
         endpoint: /push
         port: "12000"
         method: POST
-        url: http://135.237.10.13.nip.io
+        url: http://4.156.13.213.nip.io
       events:
         - "push"
       apiToken:
