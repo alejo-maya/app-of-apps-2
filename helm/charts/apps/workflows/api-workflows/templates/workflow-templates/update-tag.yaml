@@ -15,8 +15,9 @@ spec:
       args:
         - -c
         - |
-          echo "hola"
-          echo "dos"
+          set -e
+          latest_tag=$(curl -s https://registry.hub.docker.com/v1/repositories/{{`{{`}}inputs.parameters.container_image{{`}}`}}/tags | jq -r '.[].name' | sort -V | tail -n 1)
+          echo $latest_tag
         # - "set -e"
     #   - "latest_tag=$(curl -s https://registry.hub.docker.com/v1/repositories/{{`{{`}}inputs.parameters.container_image{{`}}`}}/tags | jq -r '.[].name' | sort -V | tail -n 1)"
     #   - "echo $latest_tag"
