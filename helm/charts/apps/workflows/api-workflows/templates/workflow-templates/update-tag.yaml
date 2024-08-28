@@ -13,5 +13,5 @@ spec:
       image: alpine
       command: [sh]
       args:
-      - "echo hola"
+      - "-c echo hola"
     #   source: echo hola
