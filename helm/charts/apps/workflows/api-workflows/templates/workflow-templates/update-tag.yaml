@@ -10,8 +10,29 @@ spec:
       parameters:
       - name: container_image
     script:
-      image: alpine
-      command: [sh]
+      image: alpine:3.12
+      command: [sh, -c]
       args:
-      - "-c echo hola"
-    #   source: echo hola
+      - "echo hola"
+    #   source: |
+    #     echo hola
+    #     # set -e
+    #     # # Get the list of tags for the image from Docker Hub
+    #     # latest_tag=$(curl -s https://registry.hub.docker.com/v1/repositories/{{`{{`}}inputs.parameters.container_image{{`}}`}}/tags | jq -r '.[].name' | sort -V | tail -n 1)
+
+    #     # # Increment the tag (assuming a semantic versioning format)
+    #     # IFS='.' read -r major minor patch <<< "$latest_tag"
+    #     # new_patch=$((patch + 1))
+    #     # new_tag="$major.$minor.$new_patch"
+        
+    #     # echo "New tag will be $new_tag"
+    #     # # echo $new_tag > /tmp/new_tag.txt
+    #   resources:
+    #     limits:
+    #       memory: 32Mi
+    #       cpu: 100m
+    # outputs:
+    #   parameters:
+    #     - name: new_tag
+    #       valueFrom:
+    #         path: /tmp/new_tag.txt
