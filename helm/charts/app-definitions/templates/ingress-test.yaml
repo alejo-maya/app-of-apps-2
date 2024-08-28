@@ -11,9 +11,6 @@ spec:
     path: helm/charts/apps/node-app-test/charts/ingress-test #events
     repoURL: {{ .Values.global.spec.source.repoURL }}
     targetRevision: {{ .Values.global.spec.source.targetRevision }}
-    helm:
-      valueFiles:
-        - ../../../values.yaml
   project: {{ .Values.global.spec.project }}
   syncPolicy:
     automated:
