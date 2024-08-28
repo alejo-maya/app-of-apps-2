@@ -23,13 +23,13 @@ spec:
         new_tag="$major.$minor.$new_patch"
         
         echo "New tag will be $new_tag"
-        echo $new_tag > /tmp/new_tag.txt
+        # echo $new_tag > /tmp/new_tag.txt
       resources:
         limits:
           memory: 32Mi
           cpu: 100m
-    outputs:
-      parameters:
-        - name: new_tag
-          valueFrom:
-            path: /tmp/new_tag.txt
+    # outputs:
+    #   parameters:
+    #     - name: new_tag
+    #       valueFrom:
+    #         path: /tmp/new_tag.txt
