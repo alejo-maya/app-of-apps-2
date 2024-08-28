@@ -1,35 +1,35 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: ClusterWorkflowTemplate
-# metadata:
-#   name: get-update-tag
-#   namespace: {{ .Values.global.namespaces.workflows }}
-# spec:
-#   templates:
-#   - name: get-and-update-tag
-#     inputs:
-#       parameters:
-#       - name: container_image
-#     script:
-#       image: alpine:3.12
-#       command: [sh, -c]
-#       source: |
-#         set -e
-#         # Get the list of tags for the image from Docker Hub
-#         latest_tag=$(curl -s https://registry.hub.docker.com/v1/repositories/{{`{{`}}inputs.parameters.container_image{{`}}`}}/tags | jq -r '.[].name' | sort -V | tail -n 1)
+apiVersion: argoproj.io/v1alpha1
+kind: ClusterWorkflowTemplate
+metadata:
+  name: get-update-tag
+  namespace: {{ .Values.global.namespaces.workflows }}
+spec:
+  templates:
+  - name: get-and-update-tag
+    inputs:
+      parameters:
+      - name: container_image
+    script:
+      image: alpine:3.12
+      command: [sh, -c]
+      source: |
+        set -e
+        # Get the list of tags for the image from Docker Hub
+        latest_tag=$(curl -s https://registry.hub.docker.com/v1/repositories/{{`{{`}}inputs.parameters.container_image{{`}}`}}/tags | jq -r '.[].name' | sort -V | tail -n 1)
 
-#         # Increment the tag (assuming a semantic versioning format)
-#         IFS='.' read -r major minor patch <<< "$latest_tag"
-#         new_patch=$((patch + 1))
-#         new_tag="$major.$minor.$new_patch"
+        # Increment the tag (assuming a semantic versioning format)
+        IFS='.' read -r major minor patch <<< "$latest_tag"
+        new_patch=$((patch + 1))
+        new_tag="$major.$minor.$new_patch"
         
-#         echo "New tag will be $new_tag"
-#         echo $new_tag
-#       resources:
-#         limits:
-#           memory: 32Mi
-#           cpu: 100m
-#     outputs:
-#       parameters:
-#         - name: new_tag
-#           valueFrom:
-#             outputResult: result
+        echo "New tag will be $new_tag"
+        echo $new_tag
+      resources:
+        limits:
+          memory: 32Mi
+          cpu: 100m
+    outputs:
+      parameters:
+        - name: new_tag
+          valueFrom:
+            outputResult: result
